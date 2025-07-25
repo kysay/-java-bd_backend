@@ -35,3 +35,82 @@ out/
 
 ### VS Code ###
 .vscode/
+
+src/main/resources/application.yml
+src/main/resources/application.properties
+src/main/resources/application-*.yml
+src/main/resources/application-*.properties
+.env
+.env.local
+.env.*.local
+
+### 로그 파일들 ###
+logs/
+*.log
+log/
+spring.log
+application.log
+
+### 데이터베이스 파일들 ###
+*.db
+*.sqlite
+*.sqlite3
+h2/
+
+### OS 관련 ###
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+### Java 관련 ###
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+hs_err_pid*
+replay_pid*
+
+### Maven (혹시 나중에 사용할 경우) ###
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+### 임시 파일들 ###
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+.#*
+\#*#
+
+### 테스트 커버리지 ###
+.nyc_output/
+coverage/
+*.lcov
+
+### 백업 파일들 ###
+*.bak
+*.backup
+*.old
+
+### 개발 도구 ###
+.fleet/
+.vscode/settings.json
+.devcontainer/
+
+### Docker 관련 (나중에 사용할 수도 있음) ###
+.dockerignore
