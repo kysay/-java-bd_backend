@@ -12,6 +12,7 @@ import java.util.Optional;
 @Repository
 public class UserDaoImpl implements UserDao {
 
+    // FIXME RequiredArgsConstructor, final 선언
     @Autowired
     private UserRepository userRepository;
 

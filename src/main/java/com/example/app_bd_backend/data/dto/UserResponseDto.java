@@ -2,6 +2,7 @@ package com.example.app_bd_backend.data.dto;
 
 import java.time.LocalDateTime;
 
+// FIXME swagger 사용할 경우 관련 어노테이션 추가 필요, (필드에도)
 public class UserResponseDto {
 
     private Long id;
@@ -15,7 +16,7 @@ public class UserResponseDto {
     // 기본 생성자
     public UserResponseDto() {}
 
-    // Getter, Setter (password는 포함하지 않음!)
+    // Getter, Setter (password는 포함하지 않음!) FIXME Lombok 사용으로 생략 가능. Getter, Setter or Data
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

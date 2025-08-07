@@ -1,5 +1,11 @@
 package com.example.app_bd_backend.data.dto;
 
+/**
+ * FIXME
+ * 도메인으로 dto 나누는게 관리에 용이함
+ * UserDto class 생성 후 sub class 로 관리해도되고
+ * dto 패키지 밑에 user 패키지를 추가해서 class 를 각각 만들어도 되고 상황에 맞게 선택, 맞고 틀린 방법은 없음!
+ */
 public class UserSignupDto {
 
     private String username;

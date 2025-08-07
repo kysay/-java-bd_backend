@@ -38,7 +38,7 @@ public class ApiResponse<T> {
         return response;
     }
 
-    // Getter, Setter
+    // Getter, Setter FIXME Lombok 사용으로 생략 가능. Getter, Setter or Data
     public boolean isSuccess() { return success; }
     public void setSuccess(boolean success) { this.success = success; }
 

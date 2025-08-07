@@ -20,8 +20,10 @@ import java.util.stream.Collectors;
 @Service
 public class UserServiceImpl implements UserService {
 
+    // FIXME Slf4j
     private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
-    
+
+    // FIXME RequiredArgsConstructor, final 선언
     @Autowired
     private UserDao userDao;  // Repository 대신 DAO 사용
 
@@ -31,11 +33,15 @@ public class UserServiceImpl implements UserService {
             logger.info("모든 사용자 조회");
             List<UserEtt> users = userDao.findAll();
 
-            // Entity → DTO 변환
+            // Entity → DTO 변환 FIXME ModelMapper 사용
             List<UserResponseDto> userDtos = users.stream()
                     .map(this::convertToDto)
                     .collect(Collectors.toList());
 
+            /**
+             * FIXME
+             * 오류 메시지는 하드코딩하기 보단, enum 으로 에러코드, 에러메시지 관리하는게 유지보수 측면에서도 좋음
+             */
             return ResponseUtil.success("사용자 목록 조회 성공", userDtos);
         } catch (Exception e) {
             logger.error("사용자 목록 조회 실패: ", e);
@@ -61,12 +67,24 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    /**
+     * FIXME
+     * DB 데이터 변경 & 오류 발생할 경우 rollback => Transactional
+     * 만약 DB insert 완료 후 다른 로직에서 오류가 발생한다면 DB 에는 데이터가 있지만 오류 응답 발생
+     * 오류 응답으로 client 가 다시 사용자 생성을 요청 -> 중복 검사에서 이미 존재하는 사용자명이라는 오류 발생
+     */
+    // @Transactional
     @Override
     public ResponseEntity<ApiResponse<UserResponseDto>> createUser(UserSignupDto userSignupDto) {
         try {
             logger.info("사용자 생성 시작: {}", userSignupDto.getUsername());
 
             // 중복 검사
+            /**
+             * FIXME
+             * 보통 이런 경우 boolean 변수 선언으로 가독성을 높이는데 이건 개인의 코드 스타일도 있는거라 크게 신경쓸 부분은 아님
+             * boolean isExists = userDao.existsByUsername(userSignupDto.getUsername()) || userDao.existsByEmail(userSignupDto.getEmail());
+             */
             if (userDao.existsByUsername(userSignupDto.getUsername())) {
                 return ResponseUtil.badRequest("이미 존재하는 사용자명입니다.");
             }
@@ -104,6 +122,7 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
+    // FIXME ModelMapper 사용, 변환 메서드 제거 (부득이하게 데이터 정제 후 세팅이 필요한 경우에만 해당 필드 setter 사용)
     // DTO ↔ Entity 변환 메서드들
     private UserResponseDto convertToDto(UserEtt user) {
         UserResponseDto dto = new UserResponseDto();
