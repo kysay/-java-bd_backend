@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
 
     private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
-
+    
     @Autowired
     private UserDao userDao;  // Repository 대신 DAO 사용
 
